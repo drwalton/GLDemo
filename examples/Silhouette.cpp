@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 {
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE);
-	glutInitWindowSize(500, 500);
+	glutInitWindowSize(1280, 720);
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("Backface Shell Silhouette Demo");
 	glewInit();

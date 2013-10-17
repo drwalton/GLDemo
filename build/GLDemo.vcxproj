@@ -48,7 +48,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\openctm;C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\glsw;C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\glm-0.9.4.5\glm\glm;C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\glew-1.10.0\include;C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glm-0.9.4.5\glm\glm;$(SolutionDir)..\lib\glew-1.10.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -60,7 +60,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\openctm;C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\glsw;C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\glm-0.9.4.5\glm\glm;C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\glew-1.10.0\include;C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glm-0.9.4.5\glm\glm;$(SolutionDir)..\lib\glew-1.10.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
