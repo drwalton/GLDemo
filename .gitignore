@@ -1,0 +1,20 @@
+# Visual Studio Files
+*.sdf
+*.opensdf
+*.suo
+*.ilk
+*.pdb
+*.log
+*.tlog
+*.idb
+*.lastbuildstate
+*.filters
+*.obj
+
+# Binaries
+*.exe
+*.dll
+*.lib
+
+# Libraries
+lib/*
