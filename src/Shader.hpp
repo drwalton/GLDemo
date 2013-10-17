@@ -11,20 +11,10 @@
 
 namespace GLDemo
 {
-	/** ShaderException
-	 *  Thrown to indicate errors during shader loading, compilation or linking.
-	 */
-	class ShaderException 
-	{ 
-	public: 
-		ShaderException(const std::string& msg) :msg(msg) {};
-		std::string msg;
-	};
-
 	/** Shader
 	 *  Static class for loading and compiling shaders from files.
 	 *  Usage: Load and compile a shader by providing a glsw key.
-	 *         By default, will look for files in "../shaders" 
+	 *         By default, will look for files in "../../shaders" 
 	 *         with extension ".glsl". This behaviour can be changed
 	 *         by modifying Shader::path or Shader::extension before 
 	 *         calling Shader::load.

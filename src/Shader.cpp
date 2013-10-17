@@ -7,14 +7,14 @@
 
 using namespace GLDemo;
 
-std::string Shader::path = "../shaders/";
+std::string Shader::path = "../../shaders/";
 std::string Shader::extension = ".glsl";
 
 GLuint Shader::load(GLenum type, std::string key,
 	std::vector<std::string> subs)
 {
 	if(!isValidShaderType(type))
-		throw(ShaderException("Invalid shader type."));
+		throw(Exception("Invalid shader type."));
 
 	std::string source = getSource(key);
 
@@ -22,7 +22,7 @@ GLuint Shader::load(GLenum type, std::string key,
 
 	GLuint id = glCreateShader(type);
 	if(id == 0)
-		throw(ShaderException("Shader object could not be created."));
+		throw(Exception("Shader object could not be created."));
 
 	const char* glSrc = source.c_str();
 
@@ -40,7 +40,10 @@ GLuint Shader::load(GLenum type, std::string key,
 		glGetShaderInfoLog(id, logLength, 0, errorLog);
 		std::string errorString(errorLog);
 		delete[] errorLog;
-		throw(ShaderException("Shader source could not be compiled.\n" + errorString));
+		throw(Exception("The shader source obtained from\n"
+			"    key: " + key + "\n"
+			"    path: " + path + "\n"
+			"could not be compiled.\n" + errorString));
 	}
 
 	return id;
@@ -52,10 +55,12 @@ std::string Shader::getSource(const std::string& key)
 	glswSetPath(path.c_str(), extension.c_str());
 	const char* rawSource = glswGetShader(key.c_str());
 	if(!rawSource)
-		throw(ShaderException(
-		"Shader could not be located with key: " + key + 
-		", path: " + path + 
-		", extension: " + extension + " ."));
+		throw(Exception(
+		"Shader could not be located."
+		"\nShader info:"
+		"\n    key: " + key + "\n" +
+		"\n   path: " + path + "\n" +
+		"\n    extension: " + extension + " .\n"));
 	std::string source(rawSource);
 	glswShutdown();
 	return source;
@@ -76,7 +81,7 @@ void Shader::substitute(std::string& input, const std::vector<std::string>& subs
 {
 	size_t nSubs = subs.size();
 	if(nSubs % 2 != 0)
-		throw(ShaderException("Substitution list should consist of even-length list of pairs."));
+		throw(Exception("Substitution list should consist of even-length list of pairs."));
 	for(size_t i = 0; i < nSubs; i += 2)
 	{
 		Shader::gsub(input, subs[i], subs[i+1]);
@@ -102,7 +107,7 @@ ShaderProgram::ShaderProgram(std::vector<GLuint> shaders)
 {
 	id = glCreateProgram();
 	if(!id)
-		throw(ShaderException("Program object could not be created."));
+		throw(Exception("Program object could not be created."));
 	for(size_t i = 0; i < shaders.size(); ++i)
 		glAttachShader(id, shaders[i]);
 
@@ -118,7 +123,7 @@ ShaderProgram::ShaderProgram(std::vector<GLuint> shaders)
 		glGetProgramInfoLog(id, logLength, 0, errorLog);
 		std::string errorString(errorLog);
 		delete[] errorLog;
-		throw(ShaderException("Shader linking error: " + errorString));
+		throw(Exception("Shader linking error: " + errorString));
 	}
 
 	for(size_t i = 0; i < shaders.size(); ++i)

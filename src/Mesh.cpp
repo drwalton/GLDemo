@@ -16,7 +16,7 @@ namespace GLDemo
 		ctmLoad(context, filename.c_str());
 
 		if(!(ctmGetError(context) == CTM_NONE))
-			throw(Exception("Error loading mesh file from " + filename + " ."));
+			throw(Exception("Error loading mesh file from " + filename + " .\n"));
 
 		CTMuint nVerts = ctmGetInteger(context, CTM_VERTEX_COUNT);
 		CTMuint nIndices = 3 * ctmGetInteger(context, CTM_TRIANGLE_COUNT);

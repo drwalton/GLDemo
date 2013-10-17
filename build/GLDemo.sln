@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLDemo", "GLDemo.vcxproj", "{28441945-70AE-4A0A-AB40-07255E47EF68}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Silhouette", "Silhouette\Silhouette.vcxproj", "{C073FA5E-CB79-4942-8D2B-1A2039DA47BB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{28441945-70AE-4A0A-AB40-07255E47EF68} = {28441945-70AE-4A0A-AB40-07255E47EF68}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +18,10 @@ Global
 		{28441945-70AE-4A0A-AB40-07255E47EF68}.Debug|Win32.Build.0 = Debug|Win32
 		{28441945-70AE-4A0A-AB40-07255E47EF68}.Release|Win32.ActiveCfg = Release|Win32
 		{28441945-70AE-4A0A-AB40-07255E47EF68}.Release|Win32.Build.0 = Release|Win32
+		{C073FA5E-CB79-4942-8D2B-1A2039DA47BB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C073FA5E-CB79-4942-8D2B-1A2039DA47BB}.Debug|Win32.Build.0 = Debug|Win32
+		{C073FA5E-CB79-4942-8D2B-1A2039DA47BB}.Release|Win32.ActiveCfg = Release|Win32
+		{C073FA5E-CB79-4942-8D2B-1A2039DA47BB}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
