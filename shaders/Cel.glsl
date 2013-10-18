@@ -39,12 +39,17 @@ layout(std140) uniform cameraBlock
 out vec4 color;
 
 uniform vec4 modelColor;
-uniform int levels;
+uniform int numLevels;
+
+float step(float val, int levels)
+{
+	int level = int(val * levels);
+	return float(level) / levels;
+}
 
 void main()
 {
 	float camDotN = clamp(dot(-vec3(cameraDir), norm), 0, 1);
-	int level = int(camDotN * levels);
-	float brightness = float(level) / levels;
+	float brightness = step(camDotN, numLevels);
 	color = (0.5 + brightness/2.0) * modelColor; 
 }

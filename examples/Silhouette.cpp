@@ -156,7 +156,7 @@ void display()
 
 	//Render frontfaces as usual over the top.
 	glCullFace(GL_BACK);
-	cellProg->setUniform("levels", levels);
+	cellProg->setUniform("numLevels", levels);
 	cellProg->setUniform("modelColor", modelColor);
 	mesh->render(*cellProg);
 
