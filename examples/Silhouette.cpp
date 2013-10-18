@@ -100,8 +100,8 @@ int init()
 		biasProg = new ShaderProgram(bias);
 
 		std::vector<GLuint> cell;
-		cell.push_back(Shader::load(GL_VERTEX_SHADER, "Cell.Vertex"));
-		cell.push_back(Shader::load(GL_FRAGMENT_SHADER, "Cell.Fragment"));
+		cell.push_back(Shader::load(GL_VERTEX_SHADER, "Cel.Vertex"));
+		cell.push_back(Shader::load(GL_FRAGMENT_SHADER, "Cel.Fragment"));
 		cellProg = new ShaderProgram(cell);
 
 		mesh = new Mesh("../../models/stanford.ctm");

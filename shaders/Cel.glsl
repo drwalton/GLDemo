@@ -1,6 +1,6 @@
 --Vertex
 
-#version 430
+#version 330
 
 layout(location = 0) in vec3 vPos;
 layout(location = 1) in vec3 vNorm;
@@ -25,7 +25,7 @@ void main()
 
 --Fragment
 
-#version 430
+#version 330
 
 in vec3 norm;
 
