@@ -7,7 +7,6 @@ layout(location = 1) in vec3 vNorm;
 layout(location = 2) in vec2 vTex;
 
 out vec3 norm;
-out vec2 tex;
 
 layout(std140) uniform cameraBlock
 {
@@ -20,7 +19,7 @@ uniform mat4 modelToWorld;
 
 void main()
 {
-	norm = mat3(modelToWorld) * vNorm; tex = vTex;
+	norm = mat3(modelToWorld) * vNorm;
 	gl_Position = worldToClip * modelToWorld * vec4(vPos, 1.0);
 }
 
@@ -29,7 +28,6 @@ void main()
 #version 430
 
 in vec3 norm;
-in vec2 tex;
 
 layout(std140) uniform cameraBlock
 {
@@ -48,5 +46,5 @@ void main()
 	float camDotN = clamp(dot(-vec3(cameraDir), norm), 0, 1);
 	int level = int(camDotN * levels);
 	float brightness = float(level) / levels;
-	color = brightness * modelColor; 
+	color = (0.5 + brightness/2.0) * modelColor; 
 }

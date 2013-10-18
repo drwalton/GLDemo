@@ -22,7 +22,6 @@ Viewer* viewer;
 ShaderProgram* unfScaleProg;
 ShaderProgram* normScaleProg;
 ShaderProgram* biasProg;
-ShaderProgram* normScreenProg;
 ShaderProgram* cellProg;
 Mesh* mesh;
 
@@ -30,7 +29,7 @@ glm::vec4 modelColor(1.f, .6f, 1.f, 1.f);
 int levels = 4;
 glm::vec4 outlineColor(0.f, 0.f, 0.f, 1.f);
 
-enum RenderMode {unfScale = 0, normScale = 1, bias = 2, normScreen = 3};
+enum RenderMode {unfScale = 0, normScale = 1, bias = 2};
 RenderMode renderMode = unfScale;
 
 float unfScaleAmt = 0.1f;
@@ -100,11 +99,6 @@ int init()
 		bias.push_back(Shader::load(GL_FRAGMENT_SHADER, "Silhouette.Fragment"));
 		biasProg = new ShaderProgram(bias);
 
-		std::vector<GLuint> normScreen;
-		normScreen.push_back(Shader::load(GL_VERTEX_SHADER, "Silhouette.NormScreen.Vertex"));
-		normScreen.push_back(Shader::load(GL_FRAGMENT_SHADER, "Silhouette.Fragment"));
-		normScreenProg = new ShaderProgram(normScreen);
-
 		std::vector<GLuint> cell;
 		cell.push_back(Shader::load(GL_VERTEX_SHADER, "Cell.Vertex"));
 		cell.push_back(Shader::load(GL_FRAGMENT_SHADER, "Cell.Fragment"));
@@ -132,7 +126,7 @@ void display()
 		//Enlarge model and render backfaces in outline color.
 		glCullFace(GL_FRONT);
 		unfScaleProg->setUniform("scale", 1.f + unfScaleAmt);
-		unfScaleProg->setUniform("uColor", outlineColor);
+		unfScaleProg->setUniform("outlineColor", outlineColor);
 		mesh->render(*unfScaleProg);
 
 		Text::render("Backface Rendering: Uniform Scale");
@@ -143,7 +137,7 @@ void display()
 		//Scale model out along norms and render backfaces in outline color.
 		glCullFace(GL_FRONT);
 		normScaleProg->setUniform("scale", normScaleAmt);
-		normScaleProg->setUniform("uColor", outlineColor);
+		normScaleProg->setUniform("outlineColor", outlineColor);
 		mesh->render(*normScaleProg);
 	
 		Text::render("Backface Rendering: Scale Along Normals");
@@ -154,21 +148,10 @@ void display()
 		//Push model forwards and render backfaces in outline color.
 		glCullFace(GL_FRONT);
 		biasProg->setUniform("bias", biasAmt);
-		biasProg->setUniform("uColor", outlineColor);
+		biasProg->setUniform("outlineColor", outlineColor);
 		mesh->render(*biasProg);
 
 		Text::render("Backface Rendering: Z-Bias");
-	}
-
-	else if(renderMode == normScreen)
-	{
-		//Scale model out along norms, projected in plane of screen.
-		glCullFace(GL_FRONT);
-		normScreenProg->setUniform("scale", normScreenAmt);
-		normScreenProg->setUniform("uColor", outlineColor);
-		mesh->render(*normScreenProg);
-	
-		Text::render("Backface Rendering: Scale Along Screen Normals");
 	}
 
 	//Render frontfaces as usual over the top.
@@ -222,7 +205,7 @@ void mouse(int button, int state, int x, int y)
 {
 	viewer->mouse(button, state, x, y);
 	if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
-		renderMode = (renderMode < 3 ? (RenderMode) (renderMode+1) : (RenderMode) 0);
+		renderMode = (renderMode < 2 ? (RenderMode) (renderMode+1) : (RenderMode) 0);
 }
 
 /* Callback on mouse motion with one or more buttons depressed.
@@ -247,9 +230,7 @@ void addOffset(float x)
 		unfScaleAmt += x;
 	case normScale:
 		normScaleAmt += x;
-	case normScreen:
-		normScreenAmt += x;
 	case bias:
-		biasAmt -= x;
+		biasAmt += x;
 	}
 }
