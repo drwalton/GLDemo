@@ -22,4 +22,4 @@ This is a demo of a simple way to render silhouettes in modern OpenGL.
 
 The basic idea is to render the back of the object (expanded in some way) in black, and then render the front as usual over the top.
 
-The demo shows a few different ways the backfaces can be expanded, and also includes a very basic Gooch cel shader for the frontfaces.
+Much more detail on this demo can be found in [this post](http://drwalton.github.io/2013/10/18/silhouette-rendering.html).
