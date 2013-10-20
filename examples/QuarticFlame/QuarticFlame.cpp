@@ -1,4 +1,4 @@
-#include "SplineFlame.hpp"
+#include "QuarticFlame.hpp"
 #include "Globals.hpp"
 
 #define _USE_MATH_DEFINES
@@ -11,7 +11,7 @@ using std::pow;
 
 namespace GLDemo
 {
-	SplineFlame::SplineFlame(const std::string& bbTexFile, const std::string& decayTexFile)
+	QuarticFlame::QuarticFlame(const std::string& bbTexFile, const std::string& decayTexFile)
 		:bbTex(bbTexFile), decayTex(decayTexFile),
 		height(2.0f), baseRadius(0.3f), maxWidth(2.f),
 		bulgeHeight(0.5f), lifetime(2000), nParticles(100),
@@ -37,7 +37,7 @@ namespace GLDemo
 		recalcCoeffts();
 	}
 
-	SplineFlame::~SplineFlame()
+	QuarticFlame::~QuarticFlame()
 	{
 		glDeleteBuffers(1, &pos_vbo);
 		glDeleteBuffers(1, &time_vbo);
@@ -45,13 +45,13 @@ namespace GLDemo
 		glDeleteVertexArrays(1, &vao);
 	}
 
-	void SplineFlame::update(GLuint dTime)
+	void QuarticFlame::update(GLuint dTime)
 	{
 		elapsedTime += dTime;
 		elapsedTime %= lifetime;
 	}
 
-	void SplineFlame::render()
+	void QuarticFlame::render()
 	{
 		shader->setupUBlock(uBlock::camera);
 		shader->setUniform("time", elapsedTime);
@@ -66,7 +66,7 @@ namespace GLDemo
 		shader->unuse();
 	}
 
-	void SplineFlame::genBuffers()
+	void QuarticFlame::genBuffers()
 	{
 		glGenVertexArrays(1, &vao);
 		glGenBuffers(1, &pos_vbo);
@@ -74,7 +74,7 @@ namespace GLDemo
 		glGenBuffers(1, &tex_vbo);
 	}
 
-	void SplineFlame::recalcCoeffts()
+	void QuarticFlame::recalcCoeffts()
 	{
 		glm::mat4 inv = glm::inverse(glm::mat4(
 			4.f, 4.f*pow(height, 3), pow(height, 4), 1.f,
@@ -86,7 +86,7 @@ namespace GLDemo
 		shader->setUniform("coeffts", coeffts);
 	}
 
-	void SplineFlame::spawnParticles()
+	void QuarticFlame::spawnParticles()
 	{
 		std::vector<glm::vec2> startPos(nParticles);
 		std::vector<GLuint> startTime(nParticles);
@@ -137,38 +137,38 @@ namespace GLDemo
 		glBindVertexArray(0);
 	}
 
-	void SplineFlame::setBaseRadius(float radius)
+	void QuarticFlame::setBaseRadius(float radius)
 	{
 		baseRadius = radius;
 		spawnParticles();
 	}
 
-	void SplineFlame::setBulgeHeight(float height)
+	void QuarticFlame::setBulgeHeight(float height)
 	{
 		bulgeHeight = height;
 		recalcCoeffts();
 	}
 
-	void SplineFlame::setHeight(float height)
+	void QuarticFlame::setHeight(float height)
 	{
 		this->height = height;
 		shader->setUniform("flameHeight", height);
 	}
 
-	void SplineFlame::setLifetime(GLuint lifetime)
+	void QuarticFlame::setLifetime(GLuint lifetime)
 	{
 		this->lifetime = lifetime;
 		spawnParticles();
 		shader->setUniform("lifetime", lifetime);
 	}
 
-	void SplineFlame::setMaxWidth(float width)
+	void QuarticFlame::setMaxWidth(float width)
 	{
 		maxWidth = width;
 		recalcCoeffts();
 	}
 
-	void SplineFlame::setNumParticles(GLuint num)
+	void QuarticFlame::setNumParticles(GLuint num)
 	{
 		nParticles = num;
 		spawnParticles();

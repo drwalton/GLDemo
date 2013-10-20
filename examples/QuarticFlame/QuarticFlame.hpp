@@ -1,5 +1,5 @@
-#ifndef SPLINEFLAME_HPP
-#define SPLINEFLAME_HPP
+#ifndef QUARTICFLAME_HPP
+#define QUARTICFLAME_HPP
 
 #include <string>
 #include <memory>
@@ -11,11 +11,11 @@
 
 namespace GLDemo
 {
-	class SplineFlame : public Entity
+	class QuarticFlame : public Entity
 	{
 	public:
-		SplineFlame(const std::string& bbTexFile, const std::string& decayTexFile);
-		~SplineFlame();
+		QuarticFlame(const std::string& bbTexFile, const std::string& decayTexFile);
+		~QuarticFlame();
 		void update(GLuint dTime);
 		void render();
 

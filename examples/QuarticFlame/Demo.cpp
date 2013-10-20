@@ -3,7 +3,7 @@
 
 #include <Shader.hpp>
 #include <Camera.hpp>
-#include "SplineFlame.hpp"
+#include "QuarticFlame.hpp"
 
 #include <iostream>
 
@@ -17,7 +17,7 @@ void mouse(int button, int state, int x, int y);
 void motion(int x, int y);
 
 Viewer* viewer;
-SplineFlame* particles;
+QuarticFlame* particles;
 
 GLuint elapsedTime;
 
@@ -30,7 +30,7 @@ int main(int argc, char** argv)
 	glutInitDisplayMode(GLUT_DOUBLE);
 	glutInitWindowSize(1280, 720);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow("Backface Shell Silhouette Demo");
+	glutCreateWindow("Quartic Curve Fire Demo");
 	glewInit();
 
 	int initializedCorrectly = init();
@@ -51,7 +51,7 @@ int main(int argc, char** argv)
 
 int init()
 {
-	float clearColor[] = { 0.4f, .8f, 1.f, 1.f }; //Light Blue.
+	float clearColor[] = { 0.f, 0.f, 0.f, 0.f }; //Light Blue.
 	glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_BLEND);
@@ -62,7 +62,7 @@ int init()
 
 	try
 	{
-		particles = new SplineFlame("bbTex.png", "decayTex.png");
+		particles = new QuarticFlame("bbTex.png", "decayTex.png");
 	}
 	catch(Exception& e)
 	{
@@ -73,6 +73,7 @@ int init()
 	}
 
 	particles->modelToWorld = glm::mat4(1.f);
+	particles->modelToWorld[3][1] = -1.f;
 
 	return 1;
 }

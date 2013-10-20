@@ -11,15 +11,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\examples\SplineFlame\SplineFlame.hpp" />
+    <ClCompile Include="..\..\examples\QuarticFlame\Demo.cpp" />
+    <ClCompile Include="..\..\examples\QuarticFlame\QuarticFlame.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\examples\SplineFlame\Demo.cpp" />
-    <ClCompile Include="..\..\examples\SplineFlame\SplineFlame.cpp" />
+    <ClInclude Include="..\..\examples\QuarticFlame\QuarticFlame.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CAE91949-67B9-4E59-97BF-91B06F661639}</ProjectGuid>
     <RootNamespace>Silhouette</RootNamespace>
+    <ProjectName>QuarticFlame</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
