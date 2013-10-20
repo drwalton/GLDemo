@@ -1,5 +1,5 @@
-#ifndef GLL_ENTITY_HPP
-#define GLL_ENTITY_HPP
+#ifndef GLDEMO_ENTITY_HPP
+#define GLDEMO_ENTITY_HPP
 
 #include <glm.hpp>
 

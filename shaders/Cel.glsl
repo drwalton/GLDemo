@@ -36,10 +36,10 @@ layout(std140) uniform cameraBlock
 	vec4 cameraDir;
 };
 
-out vec4 color;
-
 uniform vec4 modelColor;
 uniform int numLevels;
+
+out vec4 color;
 
 float step(float val, int levels)
 {

@@ -1,5 +1,5 @@
-#ifndef GLL_TEXT_HPP
-#define GLL_TEXT_HPP
+#ifndef GLDEMO_TEXT_HPP
+#define GLDEMO_TEXT_HPP
 
 #include <glm.hpp>
 

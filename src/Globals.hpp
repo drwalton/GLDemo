@@ -1,5 +1,5 @@
-#ifndef GLL_GLOBALS_HPP
-#define GLL_GLOBALS_HPP
+#ifndef GLDEMO_GLOBALS_HPP
+#define GLDEMO_GLOBALS_HPP
 
 #include <GL/glew.h>
 #include <string>

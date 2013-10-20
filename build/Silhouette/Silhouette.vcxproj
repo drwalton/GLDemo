@@ -52,8 +52,8 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\..\bin\Debug;$(SolutionDir)..\lib\openctm;C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\glsw;$(SolutionDir)..\lib\glew-1.10.0\lib\Release\Win32;$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GLDemo.lib;freeglut.lib;glew32.lib;glsw.lib;openctm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\SOIL\lib;$(SolutionDir)\..\bin\Debug;$(SolutionDir)..\lib\openctm;C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\glsw;$(SolutionDir)..\lib\glew-1.10.0\lib\Release\Win32;$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SOIL.lib;GLDemo.lib;freeglut.lib;glew32.lib;glsw.lib;openctm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -68,8 +68,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\bin\Release;$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glew-1.10.0\lib\Release\Win32;$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>GLDemo.lib;freeglut.lib;glew32.lib;glsw.lib;openctm.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\SOIL\lib;$(SolutionDir)..\bin\Release;$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glew-1.10.0\lib\Release\Win32;$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SOIL.lib;GLDemo.lib;freeglut.lib;glew32.lib;glsw.lib;openctm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

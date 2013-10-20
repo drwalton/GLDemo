@@ -1,5 +1,5 @@
-#ifndef GLL_MESH_HPP
-#define GLL_MESH_HPP
+#ifndef GLDEMO_MESH_HPP
+#define GLDEMO_MESH_HPP
 
 #include <GL/glew.h>
 

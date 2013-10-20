@@ -48,7 +48,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glm-0.9.4.5\glm\glm;$(SolutionDir)..\lib\glew-1.10.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\SOIL\src;$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glm-0.9.4.5\glm\glm;$(SolutionDir)..\lib\glew-1.10.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -60,7 +60,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glm-0.9.4.5\glm\glm;$(SolutionDir)..\lib\glew-1.10.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\SOIL\src;$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glm-0.9.4.5\glm\glm;$(SolutionDir)..\lib\glew-1.10.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -74,6 +74,7 @@
     <ClCompile Include="..\src\Mesh.cpp" />
     <ClCompile Include="..\src\Shader.cpp" />
     <ClCompile Include="..\src\Text.cpp" />
+    <ClCompile Include="..\src\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Camera.hpp" />
@@ -82,6 +83,7 @@
     <ClInclude Include="..\src\Mesh.hpp" />
     <ClInclude Include="..\src\Shader.hpp" />
     <ClInclude Include="..\src\Text.hpp" />
+    <ClInclude Include="..\src\Texture.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

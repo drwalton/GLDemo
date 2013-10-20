@@ -1,5 +1,5 @@
-#ifndef GLL_SHADER_HPP
-#define GLL_SHADER_HPP
+#ifndef GLDEMO_SHADER_HPP
+#define GLDEMO_SHADER_HPP
 
 #include <GL/glew.h>
 #include <string>
