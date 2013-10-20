@@ -13,7 +13,9 @@ namespace GLDemo
 {
 	SplineFlame::SplineFlame(const std::string& bbTexFile, const std::string& decayTexFile)
 		:bbTex(bbTexFile), decayTex(decayTexFile),
-		height(2.0f), baseRadius(0.5f), maxWidth(1.5f), bulgeHeight(0.3f), lifetime(4000), nParticles(100)
+		height(2.0f), baseRadius(0.3f), maxWidth(2.f),
+		bulgeHeight(0.5f), lifetime(2000), nParticles(100),
+		bbWidth(.3f), bbHeight(.3f), windWidth(.3f), windHeight(.3f)
 	{
 		std::vector<GLuint> shaders;
 		shaders.push_back(Shader::load(GL_VERTEX_SHADER, "Particle.Vertex"));
@@ -35,6 +37,14 @@ namespace GLDemo
 		recalcCoeffts();
 	}
 
+	SplineFlame::~SplineFlame()
+	{
+		glDeleteBuffers(1, &pos_vbo);
+		glDeleteBuffers(1, &time_vbo);
+		glDeleteBuffers(1, &tex_vbo);
+		glDeleteVertexArrays(1, &vao);
+	}
+
 	void SplineFlame::update(GLuint dTime)
 	{
 		elapsedTime += dTime;
@@ -45,6 +55,7 @@ namespace GLDemo
 	{
 		shader->setupUBlock(uBlock::camera);
 		shader->setUniform("time", elapsedTime);
+		shader->setUniform("modelToWorld", modelToWorld);
 
 		shader->use();
 		glBindVertexArray(vao);
@@ -85,7 +96,7 @@ namespace GLDemo
 		std::uniform_real_distribution<float> real(0.f, 1.f);
 		std::uniform_int_distribution<GLuint> integral(0, lifetime);
 		
-		for(glm::vec2 vec : startPos)
+		for(glm::vec2& vec : startPos)
 		{
 			float angle = real(gen) * 2.f * static_cast<float>(M_PI);
 			float temp = real(gen);
@@ -94,12 +105,12 @@ namespace GLDemo
 			vec = glm::vec2(radius * cos(angle), radius * sin(angle));
 		}
 		
-		for(float offset : tex)
+		for(float& offset : tex)
 		{
 			offset = real(gen);
 		}
 
-		for(GLuint time : startTime)
+		for(GLuint& time : startTime)
 		{
 			time = integral(gen);
 		}
@@ -117,9 +128,9 @@ namespace GLDemo
 		glVertexAttribPointer(1, 1, GL_UNSIGNED_INT, GL_FALSE, sizeof(GLuint), 0);
 
 		glBindBuffer(GL_ARRAY_BUFFER, tex_vbo);
-		glBufferData(GL_ARRAY_BUFFER, tex.size() * sizeof(glm::vec2), tex.data(), GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, tex.size() * sizeof(float), tex.data(), GL_STATIC_DRAW);
 		glEnableVertexAttribArray(2);
-		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 2, 0);
+		glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, sizeof(GLfloat), 0);
 
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 

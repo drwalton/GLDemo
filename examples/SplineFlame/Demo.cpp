@@ -44,6 +44,7 @@ int main(int argc, char** argv)
 	glutMainLoop();
 
 	delete viewer;
+	delete particles;
 
 	return 0;
 }
@@ -53,7 +54,9 @@ int init()
 	float clearColor[] = { 0.4f, .8f, 1.f, 1.f }; //Light Blue.
 	glClearColor(clearColor[0], clearColor[1], clearColor[2], clearColor[3]);
 	glEnable(GL_CULL_FACE);
-	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+	glDisable(GL_DEPTH_TEST);
 
 	viewer = new Viewer();
 
@@ -68,6 +71,8 @@ int init()
 		std::cin.get();
 		return 0;
 	}
+
+	particles->modelToWorld = glm::mat4(1.f);
 
 	return 1;
 }

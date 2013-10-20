@@ -25,7 +25,7 @@ float spline(float x, vec4 c);
 
 void main()
 {
-	float decay = float(time) / float(lifetime);
+	float decay = float((time + startTime) % lifetime) / float(lifetime);
 	float radius = spline(decay, coeffts);
 	VertexOut.decay = decay;
 	VertexOut.tex.x = tex * (1.0 - windWidth);
@@ -76,7 +76,7 @@ void main()
 {
 	decay = VertexIn[0].decay;
 	vec3 pointPos = gl_in[0].gl_Position.xyz;
-	vec3 toCamera = normalize(-vec3(cameraDir));
+	vec3 toCamera = normalize(vec3(cameraDir));
 
 	// Find vectors in plane of billboard.
 	vec3 up = vec3(0.0, 1.0, 0.0);
@@ -124,7 +124,7 @@ in vec2 tex;
 in vec2 bbPos;
 
 uniform sampler2D bbTex;
-uniform sampler1D decayTex;
+uniform sampler2D decayTex;
 
 out vec4 color;
 
@@ -144,7 +144,7 @@ void main()
 	alpha *= texture(bbTex, tex).a;
 
 	//Apply decay texture's color.
-	color = vec4(vec3(texture(decayTex, decay)), alpha);
+	color = vec4(vec3(texture(decayTex, vec2(decay, 0.))), alpha);
 }
 
 /* A quartic function which rapidly increases,
