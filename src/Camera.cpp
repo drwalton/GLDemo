@@ -62,7 +62,6 @@ namespace GLDemo
 	{
 		translation[3][2] -= t;
 		updateBlock();
-		std::cout << translation[3][2] << std::endl;
 		return *this;
 	}
 

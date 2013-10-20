@@ -10,19 +10,26 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\examples\SplineFlame\SplineFlame.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\examples\SplineFlame\Demo.cpp" />
+    <ClCompile Include="..\..\examples\SplineFlame\SplineFlame.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{28441945-70AE-4A0A-AB40-07255E47EF68}</ProjectGuid>
-    <RootNamespace>GLDemo</RootNamespace>
+    <ProjectGuid>{CAE91949-67B9-4E59-97BF-91B06F661639}</ProjectGuid>
+    <RootNamespace>Silhouette</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v110</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -48,10 +55,12 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\SOIL\src;$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glm-0.9.4.5\glm\glm;$(SolutionDir)..\lib\glew-1.10.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glm-0.9.4.5\glm\glm;$(SolutionDir)..\lib\glew-1.10.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\SOIL\lib;$(SolutionDir)\..\bin\Debug;$(SolutionDir)..\lib\openctm;C:\Users\David\Documents\GitHub\drwalton\GLDemo\lib\glsw;$(SolutionDir)..\lib\glew-1.10.0\lib\Release\Win32;$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SOIL.lib;GLDemo.lib;freeglut.lib;glew32.lib;glsw.lib;openctm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -60,32 +69,16 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)..\lib\SOIL\src;$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glm-0.9.4.5\glm\glm;$(SolutionDir)..\lib\glew-1.10.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)..\src;$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glm-0.9.4.5\glm\glm;$(SolutionDir)..\lib\glew-1.10.0\include;$(SolutionDir)..\lib\freeglut-2.8.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\lib\SOIL\lib;$(SolutionDir)..\bin\Release;$(SolutionDir)..\lib\openctm;$(SolutionDir)..\lib\glsw;$(SolutionDir)..\lib\glew-1.10.0\lib\Release\Win32;$(SolutionDir)..\lib\freeglut-2.8.1\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SOIL.lib;GLDemo.lib;freeglut.lib;glew32.lib;glsw.lib;openctm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\src\Camera.cpp" />
-    <ClCompile Include="..\src\Entity.cpp" />
-    <ClCompile Include="..\src\Mesh.cpp" />
-    <ClCompile Include="..\src\Shader.cpp" />
-    <ClCompile Include="..\src\Text.cpp" />
-    <ClCompile Include="..\src\Texture.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\src\Camera.hpp" />
-    <ClInclude Include="..\src\Entity.hpp" />
-    <ClInclude Include="..\src\Globals.hpp" />
-    <ClInclude Include="..\src\Mesh.hpp" />
-    <ClInclude Include="..\src\Random.hpp" />
-    <ClInclude Include="..\src\Shader.hpp" />
-    <ClInclude Include="..\src\Text.hpp" />
-    <ClInclude Include="..\src\Texture.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

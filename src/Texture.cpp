@@ -6,7 +6,7 @@
 namespace GLDemo
 {
 	GLuint Texture::nextTexUnit = 0;
-	std::string Texture::path = "../../textures";
+	std::string Texture::path = "../../textures/";
 
 	Texture::Texture(const std::string& filename)
 	{

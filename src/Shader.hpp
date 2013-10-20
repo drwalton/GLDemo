@@ -60,6 +60,7 @@ namespace GLDemo
 		void setupUBlock(uBlock block);
 
 		void setUniform(const std::string& name, int value);
+		void setUniform(const std::string& name, GLuint value);
 		void setUniform(const std::string& name, float value);
 		void setUniform(const std::string& name, glm::vec2 value);
 		void setUniform(const std::string& name, glm::vec3 value);

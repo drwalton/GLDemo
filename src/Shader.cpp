@@ -186,6 +186,13 @@ void ShaderProgram::setUniform(const std::string& name, int value)
 	glProgramUniform1i(id, uniforms[name], value);
 }
 
+void ShaderProgram::setUniform(const std::string& name, GLuint value)
+{
+	if(!uniforms.count(name))
+		getUniformLocation(name);
+	glProgramUniform1ui(id, uniforms[name], value);
+}
+
 void ShaderProgram::setUniform(const std::string& name, float value)
 {
 	if(!uniforms.count(name))

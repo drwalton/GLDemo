@@ -1,10 +1,10 @@
---Particle.Vertex
+--Vertex
 
 #version 330
 
-in vec2 startPos;
-in uint startTime;
-in float tex;
+layout (location = 0) in vec2 startPos;
+layout (location = 1) in uint startTime;
+layout (location = 2) in float tex;
 
 uniform mat4 modelToWorld;
 
@@ -29,7 +29,7 @@ void main()
 	float radius = spline(decay, coeffts);
 	VertexOut.decay = decay;
 	VertexOut.tex.x = tex * (1.0 - windWidth);
-	VertexOut.tex.y = height * (1.0 - windHeight);
+	VertexOut.tex.y = decay * (1.0 - windHeight);
 	gl_Position = modelToWorld * vec4(
 		startPos.x * radius, 
 		decay * flameHeight, 
@@ -42,7 +42,7 @@ float spline(float x, vec4 c)
 	return (((c.x * x + c.y) * x + c.z) * x + c.w) * x + 1.0;
 }
 
---Particle.Geometry
+--Geometry
 
 #version 330
 
@@ -52,7 +52,7 @@ layout(triangle_strip, max_vertices = 4) out;
 
 in VertexData {
 	float decay;
-	float tex;
+	vec2 tex;
 } VertexIn[];
 
 uniform float bbWidth;
@@ -86,28 +86,28 @@ void main()
 	vec3 corner;
 	// Bottom left vertex
 	corner = pointPos - (0.5*bbWidth*across) - (0.5*bbHeight*up);
-	gl_Position = worldToCamera * vec4(corner, 1.0);
-	bbPos = vec2(0, 0);
+	gl_Position = worldToClip * vec4(corner, 1.0);
+	bbPos = vec2(0.0, 0.0);
 	tex = VertexIn[0].tex;
 	EmitVertex();
 
 	// Top left vertex
 	corner = pointPos - (0.5*bbWidth*across) + (0.5*bbHeight*up);
-	gl_Position = worldToCamera * vec4(corner, 1.0);
+	gl_Position = worldToClip * vec4(corner, 1.0);
 	bbPos = vec2(0, 1);
 	tex = VertexIn[0].tex + vec2(0.0, windHeight);
 	EmitVertex();
 
 	// Bottom right vertex
 	corner = pointPos + (0.5*bbWidth*across) - (0.5*bbHeight*up);
-	gl_Position = worldToCamera * vec4(corner, 1.0);
+	gl_Position = worldToClip * vec4(corner, 1.0);
 	bbPos = vec2(1, 0);
 	tex = VertexIn[0].tex + vec2(windWidth, 0.0);
 	EmitVertex();
 
 	// Top right vertex
 	corner = pointPos + (0.5*bbWidth*across) + (0.5*bbHeight*up);
-	gl_Position = worldToCamera * vec4(corner, 1.0);
+	gl_Position = worldToClip * vec4(corner, 1.0);
 	bbPos = vec2(1, 1);
 	tex = VertexIn[0].tex + vec2(windWidth, windHeight);
 	EmitVertex();
@@ -115,7 +115,7 @@ void main()
 	EndPrimitive();
 }
 
---Particle.Fragment
+--Fragment
 
 #version 330
 
