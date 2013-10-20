@@ -14,8 +14,8 @@ namespace GLDemo
 	QuarticFlame::QuarticFlame(const std::string& bbTexFile, const std::string& decayTexFile)
 		:bbTex(bbTexFile), decayTex(decayTexFile),
 		height(2.0f), baseRadius(0.3f), maxWidth(2.f),
-		bulgeHeight(0.5f), lifetime(2000), nParticles(100),
-		bbWidth(.3f), bbHeight(.3f), windWidth(.3f), windHeight(.3f)
+		bulgeHeight(0.5f), lifetime(2000), nParticles(10000),
+		bbWidth(.3f), bbHeight(.3f), windWidth(.2f), windHeight(.2f)
 	{
 		std::vector<GLuint> shaders;
 		shaders.push_back(Shader::load(GL_VERTEX_SHADER, "Particle.Vertex"));
@@ -29,8 +29,9 @@ namespace GLDemo
 		shader->setUniform("lifetime", lifetime);
 		shader->setUniform("windWidth", windWidth);
 		shader->setUniform("windHeight", windHeight);
-		shader->setUniform("bbTex", bbTex.getTexUnit());
-		shader->setUniform("decayTex", decayTex.getTexUnit());
+		shader->setUniform("bbTex", (int) bbTex.getTexUnit());
+		shader->setUniform("decayTex", (int) decayTex.getTexUnit());
+		shader->setUniform("modelToWorld", modelToWorld);
 
 		genBuffers();
 		spawnParticles();
@@ -55,7 +56,6 @@ namespace GLDemo
 	{
 		shader->setupUBlock(uBlock::camera);
 		shader->setUniform("time", elapsedTime);
-		shader->setUniform("modelToWorld", modelToWorld);
 
 		shader->use();
 		glBindVertexArray(vao);
@@ -89,7 +89,7 @@ namespace GLDemo
 	void QuarticFlame::spawnParticles()
 	{
 		std::vector<glm::vec2> startPos(nParticles);
-		std::vector<GLuint> startTime(nParticles);
+		std::vector<GLint> startTime(nParticles);
 		std::vector<GLfloat> tex(nParticles);
 
 		std::mt19937 gen;
@@ -110,7 +110,7 @@ namespace GLDemo
 			offset = real(gen);
 		}
 
-		for(GLuint& time : startTime)
+		for(GLint& time : startTime)
 		{
 			time = integral(gen);
 		}
@@ -123,9 +123,9 @@ namespace GLDemo
 		glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(GLfloat) * 2, 0);
 
 		glBindBuffer(GL_ARRAY_BUFFER, time_vbo);
-		glBufferData(GL_ARRAY_BUFFER, startTime.size() * sizeof(GLuint), startTime.data(), GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, startTime.size() * sizeof(GLint), startTime.data(), GL_STATIC_DRAW);
 		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 1, GL_UNSIGNED_INT, GL_FALSE, sizeof(GLuint), 0);
+		glVertexAttribPointer(1, 1, GL_INT, GL_FALSE, sizeof(int), 0);
 
 		glBindBuffer(GL_ARRAY_BUFFER, tex_vbo);
 		glBufferData(GL_ARRAY_BUFFER, tex.size() * sizeof(float), tex.data(), GL_STATIC_DRAW);
@@ -155,7 +155,7 @@ namespace GLDemo
 		shader->setUniform("flameHeight", height);
 	}
 
-	void QuarticFlame::setLifetime(GLuint lifetime)
+	void QuarticFlame::setLifetime(int lifetime)
 	{
 		this->lifetime = lifetime;
 		spawnParticles();
@@ -172,5 +172,11 @@ namespace GLDemo
 	{
 		nParticles = num;
 		spawnParticles();
+	}
+	
+	void QuarticFlame::setModelToWorld(const glm::mat4& modelToWorld)
+	{
+		this->modelToWorld = modelToWorld;
+		shader->setUniform("modelToWorld", modelToWorld);
 	}
 }

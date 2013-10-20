@@ -19,12 +19,14 @@ namespace GLDemo
 		void update(GLuint dTime);
 		void render();
 
-		void setLifetime(GLuint lifetime);
+		void setLifetime(int lifetime);
 		void setHeight(float height);
 		void setBaseRadius(float radius);
 		void setMaxWidth(float width);
 		void setBulgeHeight(float height);
 		void setNumParticles(GLuint nParticles);
+
+		void setModelToWorld(const glm::mat4& modelToWorld);
 	private:
 		glm::vec4 coeffts;
 		Texture bbTex;
@@ -38,9 +40,9 @@ namespace GLDemo
 		float bbWidth;
 		float windWidth;
 		float windHeight;
-		GLuint lifetime;
-		GLuint elapsedTime;
-		GLuint nParticles;
+		int lifetime;
+		int elapsedTime;
+		int nParticles;
 		void genBuffers();
 		void recalcCoeffts();
 		void spawnParticles();

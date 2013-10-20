@@ -8,8 +8,8 @@ layout (location = 2) in float tex;
 
 uniform mat4 modelToWorld;
 
-uniform uint lifetime;
-uniform uint time;
+uniform int lifetime;
+uniform int time;
 uniform vec4 coeffts;
 uniform float flameHeight;
 
@@ -25,7 +25,7 @@ float spline(float x, vec4 c);
 
 void main()
 {
-	float decay = float((time + startTime) % lifetime) / float(lifetime);
+	float decay = float((time + int(startTime)) % lifetime) / float(lifetime);
 	float radius = spline(decay, coeffts);
 	VertexOut.decay = decay;
 	VertexOut.tex.x = tex * (1.0 - windWidth);

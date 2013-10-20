@@ -72,15 +72,16 @@ int init()
 		return 0;
 	}
 
-	particles->modelToWorld = glm::mat4(1.f);
-	particles->modelToWorld[3][1] = -1.f;
+	glm::mat4 modelToWorld = glm::mat4(1.f);
+	modelToWorld[3][1] = -1.f;
+	particles->setModelToWorld(modelToWorld);
 
 	return 1;
 }
 
 void display()
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClear(GL_COLOR_BUFFER_BIT);
 
 	GLuint temp = glutGet(GLUT_ELAPSED_TIME);
 	GLuint dTime = temp - elapsedTime;
