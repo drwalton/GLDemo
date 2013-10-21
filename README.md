@@ -9,8 +9,9 @@ This tiny library contains some helper classes for building tiny OpenGL tech dem
 * glm: http://sourceforge.net/projects/ogl-math/
 * openCTM: http://sourceforge.net/projects/openctm/
 * glsw: http://prideout.net/blog/?p=11
+* SOIL: http://www.lonesock.net/soil.html
 
-All are released under the MIT License, except openCTM, which is released under the (similar) zlib/libpng license.
+Most are released under the MIT License, except openCTM (zlib/libpng license) and SOIL (public domain).
 
 ## Examples ##
 
@@ -18,8 +19,10 @@ Included in this repository are the following example projects:
 
 ### Silhouette ###
 
-This is a demo of a simple way to render silhouettes in modern OpenGL.
-
-The basic idea is to render the back of the object (expanded in some way) in black, and then render the front as usual over the top.
+This is a demo of a number of simple ways to render silhouettes and perform cel-shading in modern OpenGL.
 
 Much more detail on this demo can be found in [this post](http://drwalton.github.io/2013/10/18/silhouette-rendering.html).
+
+### Quartic Flame ###
+
+This is a demo of a fast particle system for simulating fire. The demo is almost complete, and a post will be published soon.
