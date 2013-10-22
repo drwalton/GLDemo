@@ -25,14 +25,19 @@ namespace GLDemo
 		void setMaxWidth(float width);
 		void setBulgeHeight(float height);
 		void setNumParticles(GLuint nParticles);
+		void setMaxAlphaHeight(float height);
+		void setAlphaDecayRate(float rate);
 
 		void setModelToWorld(const glm::mat4& modelToWorld);
 	private:
 		glm::vec4 coeffts;
+		glm::vec4 alphaCoeffts;
 		Texture bbTex;
 		Texture decayTex;
 		std::unique_ptr<ShaderProgram> shader;
 		float height;
+		float maxAlphaHeight;
+		float alphaDecayRate;
 		float baseRadius;
 		float maxWidth;
 		float bulgeHeight;
@@ -45,6 +50,7 @@ namespace GLDemo
 		int nParticles;
 		void genBuffers();
 		void recalcCoeffts();
+		void recalcAlphaCoeffts();
 		void spawnParticles();
 		GLuint pos_vbo;
 		GLuint time_vbo;

@@ -13,8 +13,8 @@ namespace GLDemo
 {
 	QuarticFlame::QuarticFlame(const std::string& bbTexFile, const std::string& decayTexFile)
 		:bbTex(bbTexFile), decayTex(decayTexFile),
-		height(2.0f), baseRadius(0.3f), maxWidth(2.f),
-		bulgeHeight(0.5f), lifetime(2000), nParticles(10000),
+		height(2.0f), maxAlphaHeight(.25f), alphaDecayRate(.1f), baseRadius(.3f), maxWidth(2.f),
+		bulgeHeight(0.5f), lifetime(2000), nParticles(200),
 		bbWidth(.3f), bbHeight(.3f), windWidth(.2f), windHeight(.2f)
 	{
 		std::vector<GLuint> shaders;
@@ -36,6 +36,7 @@ namespace GLDemo
 		genBuffers();
 		spawnParticles();
 		recalcCoeffts();
+		recalcAlphaCoeffts();
 	}
 
 	QuarticFlame::~QuarticFlame()
@@ -84,6 +85,19 @@ namespace GLDemo
 
 		coeffts = inv * glm::vec4(0.f, 0.f, maxWidth-1.f, -1.f);
 		shader->setUniform("coeffts", coeffts);
+	}
+
+	void QuarticFlame::recalcAlphaCoeffts()
+	{
+		glm::mat4 inv = glm::inverse(glm::mat4(
+			pow(maxAlphaHeight, 4), 4.f * pow(maxAlphaHeight, 3), 1.f, 4.f,
+			pow(maxAlphaHeight, 3), 3.f * pow(maxAlphaHeight, 2), 1.f, 3.f,
+			pow(maxAlphaHeight, 2), 2.f * maxAlphaHeight, 1.f, 2.f,
+			maxAlphaHeight, 1.f, 1.f, 1.f
+			));
+
+		alphaCoeffts = inv * glm::vec4(1.f, 0.f, 0.f, -alphaDecayRate);
+		shader->setUniform("alphaCoeffts", alphaCoeffts);
 	}
 
 	void QuarticFlame::spawnParticles()
@@ -153,6 +167,18 @@ namespace GLDemo
 	{
 		this->height = height;
 		shader->setUniform("flameHeight", height);
+	}
+
+	void QuarticFlame::setMaxAlphaHeight(float height)
+	{
+		maxAlphaHeight = height;
+		recalcAlphaCoeffts();
+	}
+
+	void QuarticFlame::setAlphaDecayRate(float rate)
+	{
+		alphaDecayRate = rate;
+		recalcAlphaCoeffts();
 	}
 
 	void QuarticFlame::setLifetime(int lifetime)

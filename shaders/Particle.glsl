@@ -125,10 +125,14 @@ in vec2 bbPos;
 
 uniform sampler2D bbTex;
 uniform sampler2D decayTex;
+uniform vec4 alphaCoeffts;
 
 out vec4 color;
 
-float alphaFunc(float x);
+float alphaFunc(float x, vec4 c)
+{
+	return (((c.x * x + c.y) * x + c.z) * x + c.w) * x;
+}
 
 void main()
 {
@@ -138,19 +142,11 @@ void main()
 	float fade = (1 - centerDistSq);
 
 	//Fade alpha according to decay value.
-	float alpha = alphaFunc(decay) * fade;
+	float alpha = alphaFunc(decay, alphaCoeffts) * fade;
 
 	//Apply billboard texture's alpha.
 	alpha *= texture(bbTex, tex).a;
 
 	//Apply decay texture's color.
 	color = vec4(vec3(texture(decayTex, vec2(decay, 0.))), alpha);
-}
-
-/* A quartic function which rapidly increases,
- * then decreases slowly back to 0 slowly over the interval [0,1].
- */
-float alphaFunc(float x)
-{
-	return (((-2*x + 8)*x - 12)*x + 6)*x;
 }
