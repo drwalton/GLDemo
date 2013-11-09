@@ -30,6 +30,8 @@ namespace GLDemo
 
 		void setModelToWorld(const glm::mat4& modelToWorld);
 	private:
+		QuarticFlame(const QuarticFlame& other);
+		QuarticFlame& operator=(const QuarticFlame& other);
 		glm::vec4 coeffts;
 		glm::vec4 alphaCoeffts;
 		Texture bbTex;

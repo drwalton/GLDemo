@@ -42,6 +42,8 @@ namespace GLDemo
 		float distSpeed;
 
 	private:
+		Viewer(const Viewer& other);
+		Viewer& operator=(const Viewer& other);
 		void updateBlock();
 		GLuint ubo;
 		glm::mat4 translation;

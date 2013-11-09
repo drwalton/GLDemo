@@ -28,6 +28,8 @@ namespace GLDemo
 		~Mesh();
 		void render(ShaderProgram& shader, bool adjacency = false);
 	private:
+		Mesh(const Mesh& other);
+		Mesh& operator=(const Mesh& other);
 		GLuint vao;
 		GLuint v_vbo;
 		GLuint n_vbo;

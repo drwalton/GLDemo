@@ -15,6 +15,8 @@ namespace GLDemo
 		static std::string path;
 		GLuint getTexUnit();
 	private:
+		Texture(const Texture& other);
+		Texture& operator=(const Texture& other);
 		static GLuint nextTexUnit;
 		static GLuint getNextTexUnit();
 		GLuint texUnit;

@@ -31,6 +31,8 @@ namespace GLDemo
 		static std::string extension;
 	private:
 		Shader() {};
+		Shader(const Shader& other);
+		Shader& operator=(const Shader& other);
 		static std::string getSource(const std::string& key);
 		static bool isValidShaderType(GLenum type);
 		static void substitute(std::string& input, const std::vector<std::string>& subs);

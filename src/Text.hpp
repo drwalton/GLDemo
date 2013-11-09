@@ -15,6 +15,10 @@ namespace GLDemo
 		static float y;
 		static glm::vec4 color;
 		static void* font;
+	private:
+		Text();
+		Text(const Text& other);
+		Text& operator=(const Text& other);
 	};
 }
 

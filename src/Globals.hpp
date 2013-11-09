@@ -9,7 +9,7 @@ namespace GLDemo
 	class Exception 
 	{
 	public:
-		Exception(const std::string& msg) {this->msg = msg;};
+		Exception(const std::string& msg) {this->msg = msg;}
 		std::string msg;
 	};
 
