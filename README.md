@@ -1,6 +1,6 @@
 # GLDemo #
 
-This tiny library contains some helper classes for building tiny OpenGL tech demos with FreeGLUT, GLM and OpenCTM. It is currently a work in progress.
+This tiny library contains some helper classes for building tiny OpenGL tech demos with FreeGLUT, GLM and OpenCTM.
  
 ## Dependencies ##
 
