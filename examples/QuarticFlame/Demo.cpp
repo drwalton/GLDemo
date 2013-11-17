@@ -3,6 +3,7 @@
 
 #include <Shader.hpp>
 #include <Camera.hpp>
+#include "Exception.hpp"
 #include "QuarticFlame.hpp"
 
 #include <iostream>
@@ -72,9 +73,7 @@ int init()
 		return 0;
 	}
 
-	glm::mat4 modelToWorld = glm::mat4(1.f);
-	modelToWorld[3][1] = -1.f;
-	particles->setModelToWorld(modelToWorld);
+	particles->moveTo(glm::vec3(0.f, -1.f, 0.f));
 
 	return 1;
 }

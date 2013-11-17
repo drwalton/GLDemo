@@ -31,7 +31,7 @@ namespace GLDemo
 		shader->setUniform("windHeight", windHeight);
 		shader->setUniform("bbTex", (int) bbTex.getTexUnit());
 		shader->setUniform("decayTex", (int) decayTex.getTexUnit());
-		shader->setUniform("modelToWorld", modelToWorld);
+		shader->setUniform("modelToWorld", getModelToWorld());
 
 		genBuffers();
 		spawnParticles();
@@ -53,7 +53,7 @@ namespace GLDemo
 		elapsedTime %= lifetime;
 	}
 
-	void QuarticFlame::render()
+	void QuarticFlame::render() const
 	{
 		shader->setupUBlock(uBlock::camera);
 		shader->setUniform("time", elapsedTime);
@@ -199,10 +199,32 @@ namespace GLDemo
 		nParticles = num;
 		spawnParticles();
 	}
-	
-	void QuarticFlame::setModelToWorld(const glm::mat4& modelToWorld)
+
+	Entity& QuarticFlame::translate(const glm::vec3& t)
 	{
-		this->modelToWorld = modelToWorld;
-		shader->setUniform("modelToWorld", modelToWorld);
+		Entity::translate(t);
+		shader->setUniform("modelToWorld", getModelToWorld());
+		return *this;
+	}
+
+	Entity& QuarticFlame::moveTo(const glm::vec3& p)
+	{
+		Entity::moveTo(p);
+		shader->setUniform("modelToWorld", getModelToWorld());
+		return *this;
+	}
+
+	Entity& QuarticFlame::rotate(float angle, const glm::vec3& axis)
+	{
+		Entity::rotate(angle, axis);
+		shader->setUniform("modelToWorld", getModelToWorld());
+		return *this;
+	}
+
+	Entity& QuarticFlame::scale(float s)
+	{
+		Entity::scale(s);
+		shader->setUniform("modelToWorld", getModelToWorld());
+		return *this;
 	}
 }

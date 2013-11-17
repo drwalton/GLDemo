@@ -13,7 +13,7 @@ namespace GLDemo
 		Texture(const std::string& filename);
 		~Texture();
 		static std::string path;
-		GLuint getTexUnit();
+		GLuint getTexUnit() const;
 	private:
 		Texture(const Texture& other);
 		Texture& operator=(const Texture& other);

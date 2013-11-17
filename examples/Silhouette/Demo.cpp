@@ -5,6 +5,7 @@
 #include <Mesh.hpp>
 #include <Camera.hpp>
 #include <Text.hpp>
+#include "Exception.hpp"
 
 #include <iostream>
 

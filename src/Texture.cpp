@@ -1,5 +1,6 @@
 #include "Texture.hpp"
 #include "Globals.hpp"
+#include "Exception.hpp"
 
 #include "SOIL.h"
 
@@ -35,7 +36,7 @@ namespace GLDemo
 		glDeleteTextures(1, &id);
 	}
 
-	GLuint Texture::getTexUnit()
+	GLuint Texture::getTexUnit() const
 	{
 		return texUnit;
 	}

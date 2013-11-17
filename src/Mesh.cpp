@@ -1,12 +1,12 @@
+#include "Exception.hpp"
 #include "Mesh.hpp"
-
 #include "Shader.hpp"
 
 #include <openctm.h>
 
 namespace GLDemo
 {
-	Mesh::Mesh(const std::string& filename, bool adjacency)
+	Mesh::Mesh(const std::string& filename)
 		:v_vbo(-1), n_vbo(-1), t_vbo(-1), e_ebo(-1), elems(0)
 	{
 		glGenVertexArrays(1, &vao);
@@ -59,17 +59,10 @@ namespace GLDemo
 		const CTMuint* indices = ctmGetIntegerArray(context, CTM_INDICES);
 		if(indices)
 		{
-			if(adjacency == false)
-			{
-				elems = nIndices * sizeof(CTMuint);
-				glGenBuffers(1, &e_ebo);
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, e_ebo);
-				glBufferData(GL_ELEMENT_ARRAY_BUFFER, elems, indices, GL_STATIC_DRAW);
-			}
-			else
-			{
-				//TODO: Generate adjacency info.
-			}
+			elems = nIndices * sizeof(CTMuint);
+			glGenBuffers(1, &e_ebo);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, e_ebo);
+			glBufferData(GL_ELEMENT_ARRAY_BUFFER, elems, indices, GL_STATIC_DRAW);
 		}
 
 		glBindVertexArray(0);
@@ -86,10 +79,10 @@ namespace GLDemo
 		glDeleteVertexArrays(1, &vao);
 	}
 
-	void Mesh::render(ShaderProgram& shader, bool adjacency)
+	void Mesh::render(ShaderProgram& shader) const
 	{
 		shader.setupUBlock(uBlock::camera);
-		shader.setUniform("modelToWorld", modelToWorld);
+		shader.setUniform("modelToWorld", getModelToWorld());
 
 		shader.use();
 		glBindVertexArray(vao);

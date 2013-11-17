@@ -79,6 +79,7 @@
   <ItemGroup>
     <ClInclude Include="..\src\Camera.hpp" />
     <ClInclude Include="..\src\Entity.hpp" />
+    <ClInclude Include="..\src\Exception.hpp" />
     <ClInclude Include="..\src\Globals.hpp" />
     <ClInclude Include="..\src\Mesh.hpp" />
     <ClInclude Include="..\src\Shader.hpp" />

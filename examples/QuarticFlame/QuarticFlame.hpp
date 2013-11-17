@@ -17,7 +17,7 @@ namespace GLDemo
 		QuarticFlame(const std::string& bbTexFile, const std::string& decayTexFile);
 		~QuarticFlame();
 		void update(GLuint dTime);
-		void render();
+		void render() const;
 
 		void setLifetime(int lifetime);
 		void setHeight(float height);
@@ -28,7 +28,10 @@ namespace GLDemo
 		void setMaxAlphaHeight(float height);
 		void setAlphaDecayRate(float rate);
 
-		void setModelToWorld(const glm::mat4& modelToWorld);
+		Entity& translate(const glm::vec3& t);
+		Entity& moveTo(const glm::vec3& p);
+		Entity& rotate(float angle, const glm::vec3& axis);
+		Entity& scale(float s);
 	private:
 		QuarticFlame(const QuarticFlame& other);
 		QuarticFlame& operator=(const QuarticFlame& other);

@@ -1,4 +1,5 @@
 #include "Shader.hpp"
+#include "Exception.hpp"
 
 #include <glsw.h>
 #include <array>

@@ -6,14 +6,6 @@
 
 namespace GLDemo
 {
-	class Exception 
-	{
-	public:
-		Exception(const std::string& msg) {this->msg = msg;}
-		std::string msg;
-	};
-
-
 	/** uBlock 
 	 *  Uniform block indices used by GLL.
 	 */

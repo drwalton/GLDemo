@@ -24,9 +24,9 @@ namespace GLDemo
 	class Mesh : public Entity
 	{
 	public:
-		Mesh(const std::string& filename, bool adjacency = false);
+		Mesh(const std::string& filename);
 		~Mesh();
-		void render(ShaderProgram& shader, bool adjacency = false);
+		void render(ShaderProgram& shader) const;
 	private:
 		Mesh(const Mesh& other);
 		Mesh& operator=(const Mesh& other);

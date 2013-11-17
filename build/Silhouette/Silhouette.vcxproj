@@ -10,6 +10,9 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\examples\Silhouette\Demo.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{C073FA5E-CB79-4942-8D2B-1A2039DA47BB}</ProjectGuid>
     <RootNamespace>Silhouette</RootNamespace>
@@ -72,9 +75,6 @@
       <AdditionalDependencies>SOIL.lib;GLDemo.lib;freeglut.lib;glew32.lib;glsw.lib;openctm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\examples\Silhouette.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
