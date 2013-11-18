@@ -11,13 +11,22 @@
 *.filters
 *.obj
 
+#Cmake files
+build/cmake/CMakeFiles/*
+Makefile
+CMakeCache.txt
+cmake_install.cmake
+
 # Binaries
 *.exe
 *.dll
 *.lib
+build/cmake/QuarticFlame
+build/cmake/Silhouette
 
 # Libraries
 lib/*
+*.a
 
 # Other
 Thumbs.db
