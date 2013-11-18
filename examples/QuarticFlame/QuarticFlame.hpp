@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 #include <GL/glew.h>
-#include <glm.hpp>
+#include <glm/glm.hpp>
 #include "Entity.hpp"
 #include "Texture.hpp"
 #include "Shader.hpp"

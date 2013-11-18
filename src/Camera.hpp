@@ -2,7 +2,7 @@
 #define GLL_CAMERA_HPP
 
 #include <GL/glew.h>
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 namespace GLDemo
 {

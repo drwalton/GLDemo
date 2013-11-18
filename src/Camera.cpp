@@ -2,7 +2,7 @@
 
 #include "Globals.hpp"
 
-#include <gtc/matrix_transform.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 #include <GL/freeglut.h>
 
 #include <iostream>

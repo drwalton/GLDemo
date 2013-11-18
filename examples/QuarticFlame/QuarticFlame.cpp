@@ -4,7 +4,7 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 
-#include <gtc/matrix_inverse.hpp>
+#include <glm/gtc/matrix_inverse.hpp>
 #include <random>
 
 using std::pow;

@@ -5,7 +5,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 #include "Globals.hpp"
 

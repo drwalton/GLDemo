@@ -1,7 +1,7 @@
 #ifndef GLDEMO_ENTITY_HPP
 #define GLDEMO_ENTITY_HPP
 
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 namespace GLDemo
 {

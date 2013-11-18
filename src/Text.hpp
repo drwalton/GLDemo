@@ -1,7 +1,7 @@
 #ifndef GLDEMO_TEXT_HPP
 #define GLDEMO_TEXT_HPP
 
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 #include <string>
 
