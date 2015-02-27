@@ -13,6 +13,10 @@ This tiny library contains some helper classes for building tiny OpenGL tech dem
 
 Most are released under the MIT License, except openCTM (zlib/libpng license) and SOIL (public domain).
 
+## License ##
+
+This code is released under the MIT License.
+
 ## Examples ##
 
 Included in this repository are the following example projects:
