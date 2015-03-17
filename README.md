@@ -29,4 +29,4 @@ Much more detail on this demo can be found in [this post](http://drwalton.github
 
 ### Quartic Flame ###
 
-This is a demo of a fast particle system for simulating fire. The demo is almost complete, and a post will be published soon.
+This is a demo of a fast particle system for simulating fire. More detail on the development of this system can be found in [this post](http://drwalton.github.io/2013/11/06/stateless-particles.html).
